@@ -38,6 +38,10 @@ public class Person {
 		this.birthDate = birthDate;
 	}
 	
+	public Person() {
+		
+	}
+	
 	public Person(int id, String name, String location, Date birthDate) {
 		super();
 		this.id = id;
