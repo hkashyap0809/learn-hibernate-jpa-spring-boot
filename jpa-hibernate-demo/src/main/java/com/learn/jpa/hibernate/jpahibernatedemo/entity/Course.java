@@ -28,9 +28,10 @@ public class Course {
 	public Course() {
 		
 	}
+	
 	public Course(Long id, String name) {
 		super();
-		this.id = id;
+		this.id =id;
 		this.name = name;
 	}
 	@Override

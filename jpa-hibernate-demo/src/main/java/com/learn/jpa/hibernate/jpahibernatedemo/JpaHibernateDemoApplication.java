@@ -26,6 +26,10 @@ public class JpaHibernateDemoApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		Course course = courseRepository.findById(10001L);
 		logger.info(" Course 100001 -> {} ",course);
+//		courseRepository.deleteById(10001L);
+		
+		courseRepository.save(new Course( 10010L, "Learn MICROSERVICES"));
+		courseRepository.save(new Course( 10010L, "Learn MICROSERVICES WITH SPRING BOOT"));
 		
 	}
 
