@@ -13,8 +13,8 @@ import com.learn.database.databasedemo.entity.Person;
 import com.learn.database.databasedemo.jdbc.PersonJdbcDao;
 
 
-@SpringBootApplication
-public class DatabaseDemoApplication implements CommandLineRunner{
+//@SpringBootApplication
+public class SpringJDBCDemoApplication implements CommandLineRunner{
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -22,7 +22,7 @@ public class DatabaseDemoApplication implements CommandLineRunner{
 	PersonJdbcDao personJdbcDao;
 	
 	public static void main(String[] args) {
-		SpringApplication.run(DatabaseDemoApplication.class, args);
+		SpringApplication.run(SpringJDBCDemoApplication.class, args);
 	}
 
 	@Override
@@ -32,9 +32,9 @@ public class DatabaseDemoApplication implements CommandLineRunner{
 		logger.info("Deleting ID 1002 -> {} ", personJdbcDao.deleteById(1002));
 		logger.info("All Persons -> {} ", personJdbcDao.findAll());
 		logger.info("All Persons -> {} ", personJdbcDao.findAll());
-		logger.info("Insert 1004 -> {}", personJdbcDao.insert(new Person(1004, "Rachita","Hyderabad",new Date(0))));
+		logger.info("Insert 1004 -> {}", personJdbcDao.insert(new Person("Rachita","Hyderabad",new Date(0))));
 		logger.info("All Persons -> {} ", personJdbcDao.findAll());
-		logger.info("Update 1004 -> {}", personJdbcDao.update(new Person(1004, "Rachita Bangali","Hyderabad",new Date(0))));
+		logger.info("Update 1004 -> {}", personJdbcDao.update(new Person("Rachita Bangali","Hyderabad",new Date(0))));
 		logger.info("All Persons -> {} ", personJdbcDao.findAll());
 	}
 
