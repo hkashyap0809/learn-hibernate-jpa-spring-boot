@@ -29,15 +29,18 @@ public class SpringJPADemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-//		logger.info("All Persons -> {} ", personJdbcDao.findAll());
+		
 		logger.info("User ID 1003 -> {} ", personJpaRepository.findById(1003));
-//		logger.info("Deleting ID 1002 -> {} ", personJdbcDao.deleteById(1002));
+//		logger.info("Deleting ID 1002 -> {} ", personJpaRepository.deleteById(1002));
+		
 //		logger.info("All Persons -> {} ", personJdbcDao.findAll());
 //		logger.info("All Persons -> {} ", personJdbcDao.findAll());
 		logger.info("Insert 1 -> {}", personJpaRepository.insert(new Person("Rachita","Hyderabad",new Date(0))));
 //		logger.info("All Persons -> {} ", personJdbcDao.findAll());
 		logger.info("Update 1 -> {}", personJpaRepository.update(new Person(1,"Rachita Bangali","Hyderabad",new Date(0))));
 //		logger.info("All Persons -> {} ", personJdbcDao.findAll());
+		personJpaRepository.deleteById(1002);
+		logger.info("All Persons -> {} ", personJpaRepository.findAll());
 	}
 
 }
