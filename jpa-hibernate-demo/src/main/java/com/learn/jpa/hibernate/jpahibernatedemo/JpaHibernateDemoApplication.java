@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Course;
 import com.learn.jpa.hibernate.jpahibernatedemo.repository.CourseRepository;
+import com.learn.jpa.hibernate.jpahibernatedemo.repository.StudentRepository;
 
 @SpringBootApplication
 public class JpaHibernateDemoApplication implements CommandLineRunner{
@@ -18,13 +19,16 @@ public class JpaHibernateDemoApplication implements CommandLineRunner{
 	@Autowired
 	private CourseRepository courseRepository;
 	
+	@Autowired
+	private StudentRepository studentRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(JpaHibernateDemoApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		courseRepository.playWithEntityManager();
+		studentRepository.saveStudentWithPassport();
 		
 	}
 
