@@ -44,17 +44,11 @@ public class CourseRepository {
 	}
 	
 	public void playWithEntityManager() {
-		Course course1 = new Course("Learn Design Pattern");
+		Course course1 = new Course("Learn Code Smells");
 		entityManager.persist(course1);
 		
-		Course course2 = new Course("Learn Architectural Patterns");
+		Course course2 = findById(10002L);
+		course2.setName("Learn REACTJS");
 		entityManager.persist(course2);
-		entityManager.flush();
-		
-		course1.setName("Learn Design Patterns - updated");
-		course2.setName("Learn Architectural Patterns - updated");
-		
-		entityManager.refresh(course1);
-		entityManager.flush();
 	}
 }

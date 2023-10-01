@@ -1,5 +1,11 @@
 package com.learn.jpa.hibernate.jpahibernatedemo.entity;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -10,7 +16,14 @@ public class Course {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@Column(nullable = false)
 	private String name;
+	
+	@UpdateTimestamp
+	private LocalDateTime lastUpdatedDate;
+	
+	@CreationTimestamp
+	private LocalDateTime createdDate;
 	
 	public Long getId() {
 		return id;
