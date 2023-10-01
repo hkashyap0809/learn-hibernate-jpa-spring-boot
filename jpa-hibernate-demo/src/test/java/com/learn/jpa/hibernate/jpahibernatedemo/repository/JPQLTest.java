@@ -29,12 +29,12 @@ class JPQLTest {
 	
 	@Test
 	public void RawQueryJPQLTest() {
-		List resultList = entityManager.createQuery("SELECT C FROM Course C").getResultList();
+		List resultList = entityManager.createNamedQuery("query_get_all_courses").getResultList();
 		logger.info("SELECT C FROM COURSE C -> {}",resultList.toString());
 	}
 	@Test
 	public void typedQueryJpQLTest() {
-		TypedQuery<Course> getAllCourseQuery = entityManager.createQuery("SELECT C FROM Course C",Course.class);
+		TypedQuery<Course> getAllCourseQuery = entityManager.createNamedQuery("query_get_all_courses",Course.class);
 		List<Course> allCourses = getAllCourseQuery.getResultList();
 		logger.info("Typed Query -> {}",allCourses.toString());
 				
@@ -42,7 +42,7 @@ class JPQLTest {
 	
 	@Test
 	public void whereJPQLTest() {
-		TypedQuery<Course> getAllCourseQuery = entityManager.createQuery("SELECT C FROM Course C where name like '%ING'",Course.class);
+		TypedQuery<Course> getAllCourseQuery = entityManager.createNamedQuery("query_get_course_ING",Course.class);
 		List<Course> allCourses = getAllCourseQuery.getResultList();
 		logger.info("WHERE CLAUSE Query -> {}",allCourses.toString());
 				

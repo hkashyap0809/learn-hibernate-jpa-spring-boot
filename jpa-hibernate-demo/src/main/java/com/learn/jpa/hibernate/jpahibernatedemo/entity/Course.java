@@ -9,8 +9,19 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 
 @Entity
+
+@NamedQueries(
+		value = {
+				@NamedQuery(name="query_get_all_courses",query="SELECT C FROM Course C"),
+				@NamedQuery(name="query_get_course_ING",query="SELECT C FROM Course C where name like '%ING'")				
+		}
+)
+
+
 public class Course {
 	
 	@Id
