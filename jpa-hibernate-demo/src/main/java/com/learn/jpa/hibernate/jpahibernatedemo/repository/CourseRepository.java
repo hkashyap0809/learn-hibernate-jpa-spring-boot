@@ -46,21 +46,15 @@ public class CourseRepository {
 	public void playWithEntityManager() {
 		Course course1 = new Course("Learn Design Pattern");
 		entityManager.persist(course1);
-		entityManager.flush();
-		
-		
 		
 		Course course2 = new Course("Learn Architectural Patterns");
 		entityManager.persist(course2);
-		
 		entityManager.flush();
 		
-		entityManager.clear();
-		
-		entityManager.detach(course1);
 		course1.setName("Learn Design Patterns - updated");
-		
-		entityManager.detach(course2);
 		course2.setName("Learn Architectural Patterns - updated");
+		
+		entityManager.refresh(course1);
+		entityManager.flush();
 	}
 }
