@@ -48,5 +48,13 @@ class CourseRepositoryTest {
 		
 		assertEquals("LEARN SPRING BOOT", course1.getName());
 	}
+	
+	@Test
+	@DirtiesContext
+	void playWithEntityManagerTest() {
+		courseRepository.playWithEntityManager();
+		
+	}
+	
 
 }

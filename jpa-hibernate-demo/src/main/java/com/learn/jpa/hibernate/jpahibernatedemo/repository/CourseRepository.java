@@ -1,5 +1,7 @@
 package com.learn.jpa.hibernate.jpahibernatedemo.repository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +17,8 @@ public class CourseRepository {
 
 	@PersistenceContext
 	EntityManager entityManager;
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	//find by ID
 	public Course findById(Long id) {
@@ -37,5 +41,13 @@ public class CourseRepository {
 	public void deleteById(Long id) {
 		Course course = findById(id);
 		entityManager.remove(course);
+	}
+	
+	public void playWithEntityManager() {
+		logger.info("playWithEntityManager() start");
+		//create a new entity
+		Course course = new Course("Learn Design Pattern");
+		entityManager.persist(course);
+		course.setName("Learn Code Smells and Design Patterns");
 	}
 }

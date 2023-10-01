@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 public class Course {
 	
 	@Id
+	@GeneratedValue
 	private Long id;
 	private String name;
 	
@@ -32,6 +33,10 @@ public class Course {
 	public Course(Long id, String name) {
 		super();
 		this.id =id;
+		this.name = name;
+	}
+	public Course(String name) {
+		super();
 		this.name = name;
 	}
 	@Override
