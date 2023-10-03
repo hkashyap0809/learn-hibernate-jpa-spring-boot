@@ -12,9 +12,11 @@ import org.springframework.test.annotation.DirtiesContext;
 
 import com.learn.jpa.hibernate.jpahibernatedemo.JpaHibernateDemoApplication;
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Course;
+import com.learn.jpa.hibernate.jpahibernatedemo.entity.Passport;
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Student;
 
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 
 
 @SpringBootTest(classes = JpaHibernateDemoApplication.class)
@@ -29,11 +31,20 @@ class StudentRepositoryTest {
 	EntityManager entityManager;
 
 	@Test
+//	@Transactional
 	void retrieveStudentAndPassportDetails() {
 		Student student = entityManager.find(Student.class, 20001L);
 		logger.info("Student -> {}",student);
-		logger.info("Passport -> {}",student.getPassport());
+//		logger.info("Passport -> {}",student.getPassport());
 
+	}
+	
+	@Test
+	@Transactional
+	void retrievePassportAndAssociatedStudentDetails() {
+		Passport passport = entityManager.find(Passport.class, 30001L);
+		logger.info("Passport -> {}",passport);
+		logger.info("Student -> {}",passport.getStudent());
 
 	}
 
