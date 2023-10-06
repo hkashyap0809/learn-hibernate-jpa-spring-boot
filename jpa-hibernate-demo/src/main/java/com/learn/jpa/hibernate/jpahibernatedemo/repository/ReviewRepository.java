@@ -7,18 +7,17 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Course;
-import com.learn.jpa.hibernate.jpahibernatedemo.entity.Review;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Repository
 @Transactional
-public class CourseRepository {
+public class ReviewRepository {
 
 	@PersistenceContext
 	EntityManager entityManager;
-
+	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	//find by ID
@@ -43,36 +42,13 @@ public class CourseRepository {
 		Course course = findById(id);
 		entityManager.remove(course);
 	}
-
+	
 	public void playWithEntityManager() {
 		Course course1 = new Course("Learn Code Smells");
 		entityManager.persist(course1);
-
+		
 		Course course2 = findById(10002L);
 		course2.setName("Learn REACTJS");
 		entityManager.persist(course2);
-	}
-
-
-	public void addReviewsForCourse() {
-		//get the course 10003
-		Course course = findById(10003L);
-
-		logger.info("course reviews => {}",course.getReviews());
-
-		//add 2 reviews
-		Review review1 = new Review("good course", "5");
-		Review review2 = new Review("okayish course", "2");
-				
-		course.addReview(review1);
-		review1.setCourse(course);
-
-		course.addReview(review2);
-		review2.setCourse(course);
-
-		//save to database
-		entityManager.persist(review1);
-		entityManager.persist(review2);
-
 	}
 }

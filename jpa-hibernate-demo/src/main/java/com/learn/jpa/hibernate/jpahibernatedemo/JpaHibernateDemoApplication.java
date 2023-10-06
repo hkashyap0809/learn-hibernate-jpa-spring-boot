@@ -28,7 +28,8 @@ public class JpaHibernateDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		studentRepository.saveStudentWithPassport();
+		
+		courseRepository.addReviewsForCourse();
 		
 	}
 
