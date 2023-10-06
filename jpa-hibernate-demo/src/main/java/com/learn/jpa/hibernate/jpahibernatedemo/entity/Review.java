@@ -3,6 +3,7 @@ package com.learn.jpa.hibernate.jpahibernatedemo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Review {
@@ -14,6 +15,10 @@ public class Review {
 	private String description;
 
 	public String rating;
+	
+	@ManyToOne
+	private Course course;
+	
 
 	public Long getId() {
 		return id;
@@ -38,6 +43,14 @@ public class Review {
 		return rating;
 	}
 
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	
 	public Review() {
 
 	}
