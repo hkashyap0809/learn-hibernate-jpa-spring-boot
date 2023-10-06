@@ -1,5 +1,7 @@
 package com.learn.jpa.hibernate.jpahibernatedemo.repository;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,25 +56,23 @@ public class CourseRepository {
 	}
 
 
-	public void addReviewsForCourse() {
+	public void addReviewsForCourse(Long courseId, List<Review> reviews) {
 		//get the course 10003
-		Course course = findById(10003L);
+		Course course = findById(courseId);
 
 		logger.info("course reviews => {}",course.getReviews());
 
-		//add 2 reviews
-		Review review1 = new Review("good course", "5");
-		Review review2 = new Review("okayish course", "2");
-				
-		course.addReview(review1);
-		review1.setCourse(course);
-
-		course.addReview(review2);
-		review2.setCourse(course);
-
-		//save to database
-		entityManager.persist(review1);
-		entityManager.persist(review2);
-
+		for( Review review : reviews) {
+			
+			//add review to the course
+			course.addReview(review);
+			
+			//set the course of the review
+			review.setCourse(course);
+			
+			//save to database
+			entityManager.persist(review);
+		}
+		
 	}
 }
