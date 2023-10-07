@@ -11,6 +11,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
@@ -23,24 +25,24 @@ import jakarta.persistence.OneToMany;
 				@NamedQuery(name="query_get_all_courses",query="SELECT C FROM Course C"),
 				@NamedQuery(name="query_get_course_ING",query="SELECT C FROM Course C where name like '%ING'")				
 		}
-)
+		)
 
 
 public class Course {
-	
+
 	@Id
 	@GeneratedValue
 	private Long id;
 	@Column(nullable = false)
 	private String name;
-	
+
 	@OneToMany(mappedBy = "course")
 	private List<Review> reviews = new ArrayList<>();
-	
-	@ManyToMany
+
+	@ManyToMany(mappedBy = "courses")
 	private List<Student> students = new ArrayList<Student>();
-	
-	
+
+
 	public List<Student> getStudents() {
 		return students;
 	}
@@ -52,39 +54,39 @@ public class Course {
 	public List<Review> getReviews() {
 		return reviews;
 	}
-	
+
 	public void addReview(Review review) {
 		this.reviews.add(review);
 	}
-	
+
 	public void removeReview(Review review) {
 		this.reviews.remove(review);
 	}
 
 	@UpdateTimestamp
 	private LocalDateTime lastUpdatedDate;
-	
+
 	@CreationTimestamp
 	private LocalDateTime createdDate;
-	
+
 	public Long getId() {
 		return id;
 	}
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public Course() {
-		
+
 	}
-	
+
 	public Course(Long id, String name) {
 		super();
 		this.id =id;
@@ -98,7 +100,7 @@ public class Course {
 	public String toString() {
 		return "Course [id=" + id + ", name=" + name + "]";
 	}
-	
-	
+
+
 
 }
