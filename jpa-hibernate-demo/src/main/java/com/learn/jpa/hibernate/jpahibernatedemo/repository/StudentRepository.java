@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Passport;
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Student;
+import com.learn.jpa.hibernate.jpahibernatedemo.entity.Course;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -50,5 +51,32 @@ public class StudentRepository {
 		student.setPassport(passport);
 		entityManager.persist(passport);
 		entityManager.persist(student);
+	}
+	
+	public void insertHardCodedStudentAndCourse() {
+		Student student = new Student("Jack");
+		Course course = new Course("LEARN MICROSERVICES");
+		
+		entityManager.persist(student);
+		entityManager.persist(course);
+		
+		
+		student.addCourse(course);
+		course.addStudent(student);
+		
+		entityManager.persist(student);
+		
+	}
+	public void insertStudentAndCourse(Student student, Course course) {
+		
+		entityManager.persist(student);
+		entityManager.persist(course);
+		
+		
+		student.addCourse(course);
+		course.addStudent(student);
+		
+		entityManager.persist(student);
+		
 	}
 }

@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Course;
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Review;
+import com.learn.jpa.hibernate.jpahibernatedemo.entity.Student;
 import com.learn.jpa.hibernate.jpahibernatedemo.repository.CourseRepository;
 import com.learn.jpa.hibernate.jpahibernatedemo.repository.StudentRepository;
 
@@ -33,15 +34,13 @@ public class JpaHibernateDemoApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
+//		studentRepository.insertHardCodedStudentAndCourse();
 		
-		Review review1 = new Review("good course", "5");
-		Review review2 = new Review("okayish gt course", "2");
 		
-		List<Review> reviews = new ArrayList<>();
-		reviews.add(review1);
-		reviews.add(review2);
-
-		courseRepository.addReviewsForCourse(10003L,reviews);
+		Student student = new Student("Jack");
+		Course course = new Course("LEARN MICROSERVICES");
+		studentRepository.insertStudentAndCourse(student, course);
+		
 		
 	}
 
