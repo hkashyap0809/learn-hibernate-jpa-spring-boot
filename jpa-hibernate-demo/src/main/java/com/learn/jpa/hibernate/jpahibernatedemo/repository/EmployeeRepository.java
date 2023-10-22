@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Course;
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Employee;
+import com.learn.jpa.hibernate.jpahibernatedemo.entity.FullTimeEmployee;
+import com.learn.jpa.hibernate.jpahibernatedemo.entity.PartTimeEmployee;
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Review;
 
 import jakarta.persistence.EntityManager;
@@ -37,5 +39,16 @@ public class EmployeeRepository {
 				.getResultList();
 	}
 	
+	
+	public List<PartTimeEmployee> retrieveAllPartEmployee(){
+		return entityManager
+				.createQuery(" select e from PartTimeEmployee e", PartTimeEmployee.class)
+				.getResultList();
+	}
+	public List<FullTimeEmployee> retrieveAllFullEmployee(){
+		return entityManager
+				.createQuery(" select e from FullTimeEmployee e", FullTimeEmployee.class)
+				.getResultList();
+	}
 }
 
