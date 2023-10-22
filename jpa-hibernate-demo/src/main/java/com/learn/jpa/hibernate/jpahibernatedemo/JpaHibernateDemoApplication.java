@@ -1,5 +1,6 @@
 package com.learn.jpa.hibernate.jpahibernatedemo;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +12,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Course;
+import com.learn.jpa.hibernate.jpahibernatedemo.entity.FullTimeEmplyee;
+import com.learn.jpa.hibernate.jpahibernatedemo.entity.PartTimeEmplyee;
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Review;
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Student;
 import com.learn.jpa.hibernate.jpahibernatedemo.repository.CourseRepository;
+import com.learn.jpa.hibernate.jpahibernatedemo.repository.EmployeeRepository;
 import com.learn.jpa.hibernate.jpahibernatedemo.repository.StudentRepository;
 
 @SpringBootApplication
@@ -27,6 +31,9 @@ public class JpaHibernateDemoApplication implements CommandLineRunner{
 	@Autowired
 	private StudentRepository studentRepository;
 	
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(JpaHibernateDemoApplication.class, args);
 	}
@@ -37,9 +44,14 @@ public class JpaHibernateDemoApplication implements CommandLineRunner{
 //		studentRepository.insertHardCodedStudentAndCourse();
 		
 		
-		Student student = new Student("Jack");
-		Course course = new Course("LEARN MICROSERVICES");
-		studentRepository.insertStudentAndCourse(student, course);
+//		Student student = new Student("Jack");
+//		Course course = new Course("LEARN MICROSERVICES");
+//		studentRepository.insertStudentAndCourse(student, course);
+		
+		
+		employeeRepository.insert(new FullTimeEmplyee("Jack", new BigDecimal("100000")));
+		employeeRepository.insert(new PartTimeEmplyee("Jill", new BigDecimal("50")));
+		logger.info("All Employees -> {}", employeeRepository.retrieveAllEmployee());
 		
 		
 	}
