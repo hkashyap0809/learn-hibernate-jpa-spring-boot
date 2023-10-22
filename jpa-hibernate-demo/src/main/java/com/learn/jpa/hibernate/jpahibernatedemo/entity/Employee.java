@@ -2,7 +2,6 @@ package com.learn.jpa.hibernate.jpahibernatedemo.entity;
 
 
 import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -11,8 +10,7 @@ import jakarta.persistence.InheritanceType;
 
 
 @Entity
-@Inheritance( strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "EmployeeType")
+@Inheritance( strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Employee {
 
 	@Id
