@@ -5,14 +5,14 @@ import java.math.BigDecimal;
 import jakarta.persistence.Entity;
 
 @Entity
-public class PartTimeEmplyee extends Employee{
+public class PartTimeEmployee extends Employee{
 	
 	private BigDecimal salary;
 
-	protected PartTimeEmplyee() {
+	protected PartTimeEmployee() {
 	}
 
-	public PartTimeEmplyee(String name,BigDecimal salary) {
+	public PartTimeEmployee(String name,BigDecimal salary) {
 		super(name);
 		this.salary = salary;
 	}

@@ -12,8 +12,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Course;
-import com.learn.jpa.hibernate.jpahibernatedemo.entity.FullTimeEmplyee;
-import com.learn.jpa.hibernate.jpahibernatedemo.entity.PartTimeEmplyee;
+import com.learn.jpa.hibernate.jpahibernatedemo.entity.FullTimeEmployee;
+import com.learn.jpa.hibernate.jpahibernatedemo.entity.PartTimeEmployee;
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Review;
 import com.learn.jpa.hibernate.jpahibernatedemo.entity.Student;
 import com.learn.jpa.hibernate.jpahibernatedemo.repository.CourseRepository;
@@ -49,8 +49,8 @@ public class JpaHibernateDemoApplication implements CommandLineRunner{
 //		studentRepository.insertStudentAndCourse(student, course);
 		
 		
-		employeeRepository.insert(new FullTimeEmplyee("Jack", new BigDecimal("100000")));
-		employeeRepository.insert(new PartTimeEmplyee("Jill", new BigDecimal("50")));
+		employeeRepository.insert(new FullTimeEmployee("Jack", new BigDecimal("100000")));
+		employeeRepository.insert(new PartTimeEmployee("Jill", new BigDecimal("50")));
 		logger.info("All Employees -> {}", employeeRepository.retrieveAllEmployee());
 		
 		
