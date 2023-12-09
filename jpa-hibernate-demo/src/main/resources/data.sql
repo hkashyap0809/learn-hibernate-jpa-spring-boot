@@ -1,9 +1,9 @@
 insert into course ( ID,NAME,created_date,last_updated_date) 
-values(10001, 'LEARN SPRING',now(),now());
+values(10001, 'LEARN SPRING in 100 Steps',now(),now());
 
 
 insert into course ( ID,NAME,created_date,last_updated_date)  
-values(10002, 'LEARN REACT',now(),now());
+values(10002, 'LEARN REACT in 100 Steps',now(),now());
 
 
 insert into course ( ID,NAME,created_date,last_updated_date)  
