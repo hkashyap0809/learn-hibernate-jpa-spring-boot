@@ -83,8 +83,8 @@ class CriteriaQueryTest {
 
 		//3. Define predicates etc using Criteria Builder
 		Predicate like100Steps = criteriaBuilder.like(courseRoot.get("name"), "%100 Steps");
-												//( column name or attribute, pattern )
-		
+		//( column name or attribute, pattern )
+
 		//4. Add predicates etc to the Criteria Query
 		criteriaQuery.where(like100Steps);
 
@@ -97,6 +97,42 @@ class CriteriaQueryTest {
 		List<Course> resultList = query.getResultList();
 		logger.info("SELECT C FROM COURSE C -> {}",resultList);
 	}
+
+	@Test
+	public void allCoursesWithoutStudents() {
+		//SELECT c FROM Course C where c.students is empty
+
+
+		//1. Use criteria Builder to create a Criteria Query returning the expected result object
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Course> criteriaQuery = criteriaBuilder.createQuery(Course.class);
+		//List<Course> is the list of expected result
+
+
+
+		//2. Define roots for tables which are involved in the query
+		//The table involved in the criteria query is COURSE table
+		//root defining means from which table we need the data
+		Root<Course> courseRoot = criteriaQuery.from(Course.class);
+
+		//3. Define predicates etc using Criteria Builder
+		Predicate studentsIsEmpty = criteriaBuilder.isEmpty(courseRoot.get("students"));
+		//( column name or attribute, pattern )
+
+		//4. Add predicates etc to the Criteria Query
+		criteriaQuery.where(studentsIsEmpty);
+
+		//5. Build the TypedQuery usin the entity manager and criteria query
+		//SELECT c FROM COURSE c
+		//using criteria query -> select from roots
+		TypedQuery<Course> query = entityManager.createQuery(criteriaQuery.select(courseRoot));
+
+
+		List<Course> resultList = query.getResultList();
+		logger.info("SELECT C FROM COURSE C empty -> {}",resultList);
+	}
+
+
 
 
 
